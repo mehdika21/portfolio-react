@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --sand: #F6E9D6;
+  --gold: #D4AF37;
+  --teal: #3BA3A9;
+  --straw: #F2C14E;
+  --ocean: #0B1B2A;
+  --fire: #FF6A3D;
+  --chef: #0ED3CF;
+  --gum: #F43F5E;
+}
+
+body {
+  font-family: 'Avenir', 'Helvetica', 'Arial', sans-serif;
+  font-size: 1.1rem;
+  background:
+    radial-gradient(2000px 1000px at 50% -600px, rgba(59,163,169,.06), transparent 60%),
+    radial-gradient(1400px 600px at 10% -200px, rgba(212,175,55,.04), transparent 60%),
+    #151515;
+  animation: oceanPulse 12s ease-in-out infinite;
+  color: #f1f5f9;
+  margin: 0;
+  min-width: 320px;
+}
+
+
+
+
+@keyframes oceanPulse {
+  0%,100% { background-position: 0 0, 0 0; }
+  50% { background-position: 0 -10px, 0 -6px; }
+}
+
+h1 {
+  font-size: 3.2em;
+  line-height: 1.1;
+}
+
+button {
+  border-radius: 8px;
+  border: 1px solid transparent;
+  padding: 0.6em 1.2em;
+  font-size: 1em;
+  font-weight: 500;
+  font-family: inherit;
+  background-color: #1a1a1a;
+  cursor: pointer;
+  transition: border-color 0.25s;
+}
+button:hover {
+  border-color: #646cff;
+}
+button:focus,
+button:focus-visible {
+  outline: 4px auto -webkit-focus-ring-color;
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+}
