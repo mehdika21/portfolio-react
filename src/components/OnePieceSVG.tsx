@@ -1,4 +1,3 @@
-import React from "react";
 
 const OnePieceSVG = () => (
   <svg id="jolly" viewBox="0 0 120 60" className="w-10 h-10">

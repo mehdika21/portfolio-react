@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import SkillCloud from "./SkillCloud";
-import mehdiImage from "../assets/images/mehdi.jpg";
 
 const ICONS = [
   { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg" },
