@@ -72,7 +72,7 @@ const SkillCloud: React.FC<{ icons: Icon[]; className?: string }> = ({ icons, cl
                 </Rotator>
 
                 {/* Optional: allow slight manual orbit (no zoom/pan) */}
-                <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={1} />
+                <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={0.75} />
             </Canvas>
 
             {/* Soft inner vignette */}
