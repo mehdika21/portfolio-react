@@ -68,7 +68,7 @@ const SkillCloud: React.FC<{ icons: Icon[]; className?: string }> = ({ icons, cl
 
                 <Rotator>
                     {/* Icons on the globe */}
-                    <IconSprites icons={icons} radius={3.2} defaultSize={0.3} />
+                    <IconSprites icons={icons} radius={3.2} defaultSize={0.5} />
                 </Rotator>
 
                 {/* Optional: allow slight manual orbit (no zoom/pan) */}

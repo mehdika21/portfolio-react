@@ -16,13 +16,13 @@
   position: absolute;
   inset: 10px auto auto 50%;
   transform: translateX(-50%);
-  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-family: inherit;
   font-size: 10px;
   letter-spacing: .2em;
   color: rgba(84,63,29,.25);
 }
 .skill-title {
-  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-family: inherit;
   letter-spacing: .06em;
 }
 .skill-pill {
@@ -41,7 +41,7 @@
   color: #1E1E1E;
 }
 .footer-title {
-  font-family: "Press Start 2P", ui-monospace, monospace;
+  font-family: inherit;
   letter-spacing: .08em;
   color: var(--straw);
   text-shadow: 0 0 10px rgba(242,193,78,.6), 0 0 18px rgba(212,175,55,.35);
