@@ -1,12 +1,12 @@
 import React from "react";
-import OnePieceSVG from "./OnePieceSVG";
+import OnePieceSVG from "../assets/images/strawhat.png";
 
 const Navbar: React.FC = () => (
   <header id="nav" className="bg-[#1a1a1a] sticky top-0 z-50 backdrop-blur border-b border-white/5">
     <nav className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
       {/* Left side - Straw Hat Jolly Roger */}
       <div className="flex items-center gap-3">
-        <OnePieceSVG />
+         <img src={OnePieceSVG} alt="Straw Hat Jolly Roger — aperçu" className="w-full aspect-[16/9] object-cover" />
         <span className="font-extrabold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-straw via-gold to-teal glow-mk">
           MK
         </span>
