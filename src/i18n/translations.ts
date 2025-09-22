@@ -9,7 +9,7 @@ export const translations = {
 
     // Hero
     'hero.tagline': 'Cap sur la Grand Line',
-    'hero.greeting': "Salut, c'est",
+    'hero.greeting': "c'est",
     'hero.imPassionate': "Je suis passionné par ",
     'hero.phrase.1': 'Construire des applications web fiables et soignées',
     'hero.phrase.2': 'Résoudre des problèmes complexes',
@@ -56,7 +56,7 @@ export const translations = {
 
     // Hero
     'hero.tagline': 'Setting Sail for the Grand Line',
-    'hero.greeting': "Hi, I'm",
+    'hero.greeting': "I'm",
     'hero.imPassionate': 'I’m passionate about ',
     'hero.phrase.1': 'Building clean, reliable web apps',
     'hero.phrase.2': 'Solving complex problems',

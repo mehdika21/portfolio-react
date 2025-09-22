@@ -44,13 +44,31 @@ const IconSprites: React.FC<{ icons: Icon[]; radius?: number; defaultSize?: numb
 
 const Rotator: React.FC<{ children: React.ReactNode }> = ({ children }) => {
     const ref = useRef<THREE.Group>(null);
-    useFrame(({ mouse }) => {
+    const rotationSpeed = useRef({ x: 0.005, y: 0.008 }); // Base rotation speeds
+    
+    useFrame(({ mouse, clock }) => {
         if (!ref.current) return;
-        ref.current.rotation.y += 0.04; // slow auto-rotate
-        // light parallax
-        ref.current.rotation.x = THREE.MathUtils.lerp(ref.current.rotation.x, mouse.y * 0.25, 0.06);
-        ref.current.rotation.y = THREE.MathUtils.lerp(ref.current.rotation.y, ref.current.rotation.y + mouse.x * 0.001, 0.06);
+        
+        // Constant rotation with time-based animation
+        const time = clock.getElapsedTime();
+        
+        // Primary constant rotation
+        ref.current.rotation.y += rotationSpeed.current.y;
+        ref.current.rotation.x += rotationSpeed.current.x;
+        
+        // Optional: Add subtle mouse influence without stopping rotation
+        const mouseInfluenceX = mouse.y * 0.1;
+        const mouseInfluenceY = mouse.x * 0.1;
+        
+        // Blend mouse influence with constant rotation
+        ref.current.rotation.x += mouseInfluenceX * 0.01;
+        ref.current.rotation.y += mouseInfluenceY * 0.01;
+        
+        // Optional: Add slight variation to make it more organic
+        const variation = Math.sin(time * 0.5) * 0.002;
+        ref.current.rotation.x += variation;
     });
+    
     return <group ref={ref}>{children}</group>;
 };
 
@@ -71,8 +89,14 @@ const SkillCloud: React.FC<{ icons: Icon[]; className?: string }> = ({ icons, cl
                     <IconSprites icons={icons} radius={3.2} defaultSize={0.5} />
                 </Rotator>
 
-                {/* Optional: allow slight manual orbit (no zoom/pan) */}
-                <OrbitControls enableZoom={false} enablePan={false} rotateSpeed={1} />
+                {/* Disable OrbitControls or make them less intrusive */}
+                <OrbitControls 
+                    enableZoom={false} 
+                    enablePan={false} 
+                    rotateSpeed={0.3}
+                    enableDamping={true}
+                    dampingFactor={0.1}
+                />
             </Canvas>
 
             {/* Soft inner vignette */}
