@@ -54,8 +54,8 @@ const Navbar: React.FC = () => {
           >
             {/* download icon */}
             <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1z"/>
-              <path d="M5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2z"/>
+              <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1z" />
+              <path d="M5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2z" />
             </svg>
             {cvLabel}
           </a>
@@ -105,9 +105,8 @@ const Navbar: React.FC = () => {
       {/* Mobile panel */}
       <div
         id="mobile-menu"
-        className={`md:hidden fixed z-50 top-[64px] left-0 right-0 mx-3 rounded-2xl border border-white/10 bg-[#222]/95 shadow-xl transition-all duration-200 ${
-          mobileOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2"
-        }`}
+        className={`md:hidden fixed z-50 top-[64px] left-0 right-0 mx-3 rounded-2xl border border-white/10 bg-[#222]/95 shadow-xl transition-all duration-200 ${mobileOpen ? "opacity-100 translate-y-0" : "pointer-events-none opacity-0 -translate-y-2"
+          }`}
       >
         <div className="p-4 flex flex-col gap-2">
           <a
@@ -134,42 +133,45 @@ const Navbar: React.FC = () => {
 
           <hr className="my-2 border-white/10" />
 
-          <a
-            href={cv}
-            download
-            className="inline-flex items-center gap-2 px-3 py-2 rounded-lg bg-yellow-600 text-slate-900 font-medium hover:brightness-95"
-            onClick={() => setMobileOpen(false)}
-            aria-label={cvLabel}
-            title={cvLabel}
-          >
-            <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-              <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1z"/>
-              <path d="M5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2z"/>
-            </svg>
-            {cvLabel}
-          </a>
+          <div className="flex items-center justify-between gap-3 pt-2">
+            <a
+              href={cv}
+              download
+              className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-yellow-600 text-slate-900 text-xs font-medium hover:brightness-95 whitespace-nowrap"
+              onClick={() => setMobileOpen(false)}
+              aria-label={cvLabel}
+              title={cvLabel}
+            >
+              <svg className="w-3 h-3" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+                <path d="M12 3a1 1 0 0 1 1 1v9.586l2.293-2.293a1 1 0 1 1 1.414 1.414l-4 4a1 1 0 0 1-1.414 0l-4-4a1 1 0 1 1 1.414-1.414L11 13.586V4a1 1 0 0 1 1-1z" />
+                <path d="M5 18a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v2a1 1 0 0 1-1 1H6a1 1 0 0 1-1-1v-2z" />
+              </svg>
+              {cvLabel}
+            </a>
 
-          <div className="flex items-center  gap-3 pt-2">
-            <button
-              onClick={() => {
-                setLang("fr");
-                setMobileOpen(false);
-              }}
-              className={`font-semibold ${lang === "fr" ? "text-gold" : "text-slate-400 hover:text-teal"}`}
-            >
-              FR
-            </button>
-            <span className="text-slate-500">|</span>
-            <button
-              onClick={() => {
-                setLang("en");
-                setMobileOpen(false);
-              }}
-              className={`font-semibold ${lang === "en" ? "text-gold" : "text-slate-400 hover:text-teal"}`}
-            >
-              EN
-            </button>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={() => {
+                  setLang("fr");
+                  setMobileOpen(false);
+                }}
+                className={`font-semibold ${lang === "fr" ? "text-gold" : "text-slate-400 hover:text-teal"}`}
+              >
+                FR
+              </button>
+              <span className="text-slate-500">|</span>
+              <button
+                onClick={() => {
+                  setLang("en");
+                  setMobileOpen(false);
+                }}
+                className={`font-semibold ${lang === "en" ? "text-gold" : "text-slate-400 hover:text-teal"}`}
+              >
+                EN
+              </button>
+            </div>
           </div>
+
         </div>
       </div>
     </header>
