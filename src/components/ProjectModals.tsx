@@ -104,8 +104,21 @@ export const ProjectModals: React.FC<{ openId: string | null; onClose: () => voi
                     onClick={() => setGalleryIdx((galleryIdx + 1) % modal.gallery.length)}
                     aria-label={t('gallery.next')}
                   >❯</button>
+                  
+                  {/* Gallery Dots Indicator */}
+                  <div className="absolute bottom-4 left-1/2 -translate-x-1/2 flex space-x-2">
+                    {modal.gallery.map((_, index) => (
+                      <button
+                        key={index}
+                        className={`h-2 w-2 rounded-full ${index === galleryIdx ? 'bg-emerald-400' : 'bg-slate-400'}`}
+                        onClick={() => setGalleryIdx(index)}
+                        aria-label={`View image ${index + 1}`}
+                      ></button>
+                    ))}
+                  </div>
                 </>
               )}
+              
             </div>
           </div>
 

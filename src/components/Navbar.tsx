@@ -137,7 +137,7 @@ const Navbar: React.FC = () => {
             <a
               href={cv}
               download
-              className="inline-flex items-center gap-1 px-2 py-1 rounded-md bg-yellow-600 text-slate-900 text-xs font-medium hover:brightness-95 whitespace-nowrap"
+              className="inline-flex items-center gap-1 h-9 px-4 rounded-[8px] bg-yellow-600 text-slate-900 text-xs font-medium hover:brightness-95 whitespace-nowrap"
               onClick={() => setMobileOpen(false)}
               aria-label={cvLabel}
               title={cvLabel}
