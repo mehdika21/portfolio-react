@@ -19,6 +19,8 @@ const ICONS = [
   { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/cplusplus/cplusplus-original.svg" },
   { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/c/c-original.svg" },
   { src: "https://cdn.jsdelivr.net/gh/devicons/devicon/icons/php/php-original.svg" },
+  { src: "https://cdn.worldvectorlogo.com/logos/github-icon-2.svg" },
+  { src: "https://img.icons8.com/?size=100&id=20906&format=png&color=000000" },
 ];
 
 const phrases = [

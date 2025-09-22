@@ -100,7 +100,7 @@ export const ProjectModals: React.FC<{ openId: string | null; onClose: () => voi
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center" role="dialog" aria-modal="true">
       <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-sm" onClick={onClose} aria-hidden="true"></div>
-      <div className="relative mx-auto my-8 w-[96%] max-w-6xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[#222222] border border-white/10 bg-slate-800/80 text-slate-100  shadow-2xl">
+      <div className="relative mx-auto my-8 w-[96%] max-w-6xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[#222222] border border-white/10   shadow-2xl">
         <div className="p-6 md:p-8 grid md:grid-cols-[1.4fr_1fr] gap-8">
           {/* LEFT: Gallery */}
           <div className="space-y-4">

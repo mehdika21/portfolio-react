@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { ProjectModals } from "./ProjectModals";
 import ehealthLogo from "../assets/images/ehealth/logo.png";
 import v2vImage from "../assets/images/v2v/V2V.png";
-import shareElecImage from "../assets/images/shareElec/firstPage.png";
+import shareElecImage from "../assets/images/shareElec/logo.png";
 import optimisationLogo from "../assets/images/optimisation/logo.png";
 
 const cards = [
