@@ -8,6 +8,7 @@ import ehealthStudentVisits from "../assets/images/ehealth/studentVisitsPage.png
 import ehealthStats from "../assets/images/ehealth/statsPage.png";
 import ehealthDental from "../assets/images/ehealth/dentalVisit.png";
 import v2vImage from "../assets/images/v2v/V2V.png";
+import v2vDemo from "../assets/images/v2v/demo.png";
 import shareElecFirst from "../assets/images/shareElec/firstPage.png";
 import shareElecSecond from "../assets/images/shareElec/secondPage.png";
 import shareElecProfile from "../assets/images/shareElec/profilePage.png";
@@ -44,7 +45,7 @@ const modalBase: ModalBase[] = [
   {
     id: "modal-v2v",
     img: v2vImage,
-    gallery: [v2vImage],
+    gallery: [v2vDemo],
     tags: ["C++", "Qt / QML", "OpenStreetMap", "OSRM", "Lambert93"],
     github: "https://github.com/mehdika21/v2v-simulation",
     titleKey: "modal.v2v.title",
