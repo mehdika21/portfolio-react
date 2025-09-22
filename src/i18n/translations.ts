@@ -25,7 +25,7 @@ export const translations = {
     'skills.languages': 'Langages',
 
     // Contact
-    'contact.title': 'Entrer en contact',
+    'contact.title': 'Contactez-moi',
     'contact.rights': 'Tous droits réservés.',
 
     // Modals / gallery

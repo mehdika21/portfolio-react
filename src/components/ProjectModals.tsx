@@ -84,7 +84,8 @@ export const ProjectModals: React.FC<{ openId: string | null; onClose: () => voi
     <div className="fixed inset-0 z-50 flex items-center justify-center" role="dialog" aria-modal="true">
       <div className="absolute inset-0 bg-slate-950/75 backdrop-blur-sm" onClick={onClose} aria-hidden="true"></div>
       <div className="relative mx-auto my-8 w-[96%] max-w-6xl max-h-[90vh] overflow-y-auto rounded-2xl bg-[#222222] border border-white/10 shadow-2xl">
-        <div className="p-6 md:p-8 grid md:grid-cols-[1.4fr_1fr] gap-8">
+        <div className="p-6 md:p-8 grid md:grid-cols-[1.4fr_1fr] items-stretch gap-8">
+
           {/* LEFT */}
           <div className="space-y-4">
             <div className="relative aspect-video rounded-xl overflow-hidden bg-slate-800/40 ring-1 ring-white/10">
@@ -107,24 +108,45 @@ export const ProjectModals: React.FC<{ openId: string | null; onClose: () => voi
           </div>
 
           {/* RIGHT */}
-          <div>
-            <div className="flex items-start justify-between gap-4">
+          {/* RIGHT */}
+          <div className="flex flex-col items-start h-full">
+            <div className="flex items-start justify-between w-full gap-4">
               <h3 className="text-xl font-semibold">{t(modal.titleKey)}</h3>
-              <button className="p-2 rounded-lg bg-white/5 hover:bg-white/10" onClick={onClose} aria-label={t('modal.close')}>✕</button>
+              <button
+                className="p-2 rounded-lg bg-white/5 hover:bg-white/10"
+                onClick={onClose}
+                aria-label={t('modal.close')}
+              >
+                ✕
+              </button>
             </div>
-            <p className="mt-4 text-sm text-slate-300">{t(modal.descKey)}</p>
+
+            {/* cleaner text spacing */}
+            <p className="mt-4 text-[0.95rem] leading-relaxed text-slate-300">
+              {t(modal.descKey)}
+            </p>
+
+            {/* tags */}
             <div className="mt-5 flex flex-wrap gap-2 text-xs">
               {modal.tags.map((tag) => (
                 <span key={tag} className="px-2 py-1 bg-white/5 rounded">{tag}</span>
               ))}
             </div>
-            <div className="mt-6">
-              <a href={modal.github} className="inline-flex items-center gap-2 rounded-lg bg-yellow-600 px-4 py-2 text-slate-900 font-medium hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-teal-500">
-                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor"><path d="M8 .2a8 8 0 00-2.53 15.6c.4.08.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.81.06 1.24.84 1.24.84.72 1.24 1.89.88 2.35.67.07-.52.28-.88.5-1.08-1.78-.2-3.64-.89-3.64-3.97 0-.88.32-1.6.84-2.17-.09-.2-.37-1.02.08-2.12 0 0 .67-.21 2.2.83a7.55 7.55 0 014 0c1.53-1.04 2.2-1.83 2.2-1.83.45 1.1.17 1.92.08 2.12.52.57.84 1.29.84 2.17 0 3.09-1.87 3.77-3.65 3.97.29.25.54.74.54 1.5v2.23c0 .21.15.46.55.38A8 8 0 008 .2z"/></svg>
+
+            {/* bottom action */}
+            <div className="mt-auto w-full border-t border-white/10 pt-4">
+              <a
+                href={modal.github}
+                className="inline-flex w-full justify-center items-center gap-2 rounded-lg bg-yellow-600 px-4 py-2 text-slate-900 font-medium hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-teal-500"
+              >
+                <svg className="w-4 h-4" viewBox="0 0 16 16" fill="currentColor">
+                  <path d="M8 .2a8 8 0 00-2.53 15.6c.4.08.55-.17.55-.38v-1.34c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.81.06 1.24.84 1.24.84.72 1.24 1.89.88 2.35.67.07-.52.28-.88.5-1.08-1.78-.2-3.64-.89-3.64-3.97 0-.88.32-1.6.84-2.17-.09-.2-.37-1.02.08-2.12 0 0 .67-.21 2.2.83a7.55 7.55 0 014 0c1.53-1.04 2.2-1.83 2.2-1.83.45 1.1.17 1.92.08 2.12.52.57.84 1.29.84 2.17 0 3.09-1.87 3.77-3.65 3.97.29.25.54.74.54 1.5v2.23c0 .21.15.46.55.38A8 8 0 008 .2z" />
+                </svg>
                 {t('modal.viewGithub')}
               </a>
             </div>
           </div>
+
         </div>
       </div>
     </div>
