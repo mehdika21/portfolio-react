@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import OnePieceSVG from "./OnePieceSVG";
+import onePiece from "../assets/images/strawhat.png";
 import { useI18n } from "../i18n/I18n";
 import cv from "../assets/cv_stage1.pdf";
 
@@ -24,12 +25,18 @@ const Navbar: React.FC = () => {
     <header id="nav" className="bg-[#1a1a1a] sticky top-0 z-50 backdrop-blur border-b border-white/5">
       <nav className="relative max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
         {/* Left: Logo */}
-        <div className="flex items-center gap-3">
-          <OnePieceSVG />
+        <div className="flex items-center gap-2">
+          <img
+            src={onePiece}
+            alt="onePieceLogo"
+            className="w-8 h-8 object-contain relative top-[2px]"
+          />
           <span className="font-extrabold text-xl sm:text-2xl text-transparent bg-clip-text bg-gradient-to-r from-straw via-gold to-teal glow-mk">
             MK
           </span>
         </div>
+
+
 
         {/* CENTER (desktop): links */}
         <div className="absolute left-1/2 -translate-x-1/2 hidden md:flex items-center gap-8">
