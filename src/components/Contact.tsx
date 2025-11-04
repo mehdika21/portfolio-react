@@ -1,5 +1,5 @@
 import React from "react";
-import cv from "../assets/cv_stage1.pdf";
+import cv from "../assets/MehdiKAIDI.pdf";
 import { useI18n } from "../i18n/I18n";
 
 const Contact: React.FC = () => {

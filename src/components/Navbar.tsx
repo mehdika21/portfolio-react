@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 // import OnePieceSVG from "./OnePieceSVG";
 import onePiece from "../assets/images/strawhat.png";
 import { useI18n } from "../i18n/I18n";
-import cv from "../assets/cv_stage1.pdf";
+import cv from "../assets/MehdiKAIDI.pdf";
 
 const Navbar: React.FC = () => {
   const { lang, setLang, t } = useI18n();
