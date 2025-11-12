@@ -65,7 +65,7 @@ const modalBase: ModalBase[] = [
     id: "modal-optimisation",
     img: optimisationLogo,
     gallery: [optimisationHome, optimisationFunction, optimisationContraintes, optimisationConfig, optimisationDefine, resultPage1, tables, graph],
-    tags: ["Python", "Flask", "SciPy", "NumPy", "React", "Tailwind CSS"],
+    tags: ["Python", "FastAPI", "NumPy", "React", "Tailwind CSS"],
     github: "https://github.com/mehdika21/recherche-operationnelle",
     titleKey: "modal.optim.title",
     descKey: "modal.optim.desc",
