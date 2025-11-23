@@ -39,11 +39,13 @@ export const translations = {
     'modal.ehealth.desc':
       "Application web sécurisée pour centraliser l'historique de santé des élèves (antécédents, examens, vaccinations, allergies, traitements). Résout l'accès, la mise à jour, le partage, la confidentialité et la traçabilité.",
     'modal.v2v.title': 'V2V Simulation — Mulhouse (5G)',
+    // **Revised French Description for V2V**
     'modal.v2v.desc':
-      "Application desktop C++/Qt simulant les déplacements, la couverture radio (puissance/fréquences) et les connexions inter-véhicules en temps réel sur Mulhouse.",
+      "Application desktop C++/Qt simulant les **connexions inter-véhicules (V2V) en 5G** : modélisation des déplacements, de la couverture radio et des communications en temps réel sur le territoire de Mulhouse.",
+    // **Revised French Description for ShareElec**
     'modal.shareelec.title': "ShareElec — Marketplace d'électricité",
     'modal.shareelec.desc':
-      "Plateforme web pour acheter, vendre et gérer des offres d'électricité en toute sécurité : tarification en temps réel, énergies renouvelables et transactions sûres.",
+      "Plateforme web innovante permettant aux particuliers/organisations d'**acheter, vendre et gérer des offres d'électricité de manière sécurisée**, favorisant l'autonomie énergétique et l'optimisation locale.",
     'modal.optim.title': 'Optimisation — Résolution de problèmes',
     'modal.optim.desc':
       "Application web pour la résolution de problèmes d'optimisation mathématique. Interface intuitive pour définir les fonctions, contraintes et paramètres, avec visualisation des résultats.",
@@ -84,13 +86,15 @@ export const translations = {
     // Project modals content
     'modal.ehealth.title': 'Ehealth — Student Medical Record',
     'modal.ehealth.desc':
-      'Secure web app to centralize students’ health history (background, exams, vaccinations, allergies, treatments). Solves access, update, sharing, confidentiality and traceability.',
+      'Secure web app to centralize students’ health history ( vaccinations, allergies, treatments). Solves access, update, sharing, confidentiality and traceability.',
     'modal.v2v.title': 'V2V Simulation — Mulhouse (5G)',
+    // **Revised English Description for V2V (Rephrased)**
     'modal.v2v.desc':
-      'Desktop C++/Qt app simulating movements, radio coverage (power/frequencies) and inter-vehicle connections in real time over Mulhouse.',
+      'Desktop C++/Qt application simulating **5G V2V (Vehicle-to-Vehicle) connections**, including movement, radio coverage, and inter-vehicle communications in real-time across the Mulhouse area.',
     'modal.shareelec.title': 'ShareElec — Electricity Marketplace',
+    // **Revised English Description for ShareElec (Translated & Rephrased)**
     'modal.shareelec.desc':
-      'Web platform to buy, sell and manage electricity offers securely: real-time pricing, renewables and safe transactions.',
+      'Innovative web platform enabling individuals and organizations to **securely buy, sell, and manage electricity offers**, promoting energy autonomy and local optimization.',
     'modal.optim.title': 'Optimization — Problem Solving',
     'modal.optim.desc':
       'Web app for solving mathematical optimization problems with an intuitive UI for functions, constraints and parameters, plus results visualization.',
