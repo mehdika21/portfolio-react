@@ -1,111 +1,275 @@
-// SkillCloud.tsx
+
 import * as THREE from "three";
-import React, { useMemo, useRef } from "react";
-import { Canvas, useFrame, useLoader } from "@react-three/fiber";
-import { PerspectiveCamera, OrbitControls } from "@react-three/drei";
 
-type Icon = { src: string; size?: number };
+import React, {
+  useMemo,
+  useRef,
+  useState,
+} from "react";
 
-function spherePoints(count: number, radius: number): THREE.Vector3[] {
-    const pts: THREE.Vector3[] = [];
-    const phi = Math.PI * (3 - Math.sqrt(5));
-    for (let i = 0; i < count; i++) {
-        const y = 1 - (i / (count - 1)) * 2;
-        const r = Math.sqrt(1 - y * y);
-        const theta = phi * i;
-        const x = Math.cos(theta) * r;
-        const z = Math.sin(theta) * r;
-        const v = new THREE.Vector3(x, y, z).normalize().multiplyScalar(radius);
-        // push slightly above the surface so sprites don't clip
-        v.multiplyScalar(1.02);
-        pts.push(v);
-    }
-    return pts;
+import {
+  Canvas,
+  useFrame,
+} from "@react-three/fiber";
+
+import {
+  Html,
+  PerspectiveCamera,
+  OrbitControls,
+} from "@react-three/drei";
+
+// -----------------------------------
+// TYPES
+// -----------------------------------
+
+type Icon = {
+  src: string;
+  size?: number;
+  name?: string;
+};
+
+type SkillCloudProps = {
+  icons: Icon[];
+  className?: string;
+};
+
+// -----------------------------------
+// GENERATE SPHERE POSITIONS
+// -----------------------------------
+
+function spherePoints(
+  count: number,
+  radius: number
+): THREE.Vector3[] {
+  const points: THREE.Vector3[] = [];
+
+  if (count === 0) return points;
+
+  const phi = Math.PI * (3 - Math.sqrt(5));
+
+  for (let i = 0; i < count; i++) {
+    const y =
+      count === 1
+        ? 0
+        : 1 - (i / (count - 1)) * 2;
+
+    const r = Math.sqrt(
+      Math.max(0, 1 - y * y)
+    );
+
+    const theta = phi * i;
+
+    const x = Math.cos(theta) * r;
+    const z = Math.sin(theta) * r;
+
+    const point = new THREE.Vector3(
+      x,
+      y,
+      z
+    )
+      .normalize()
+      .multiplyScalar(radius);
+
+    points.push(point);
+  }
+
+  return points;
 }
 
-const IconSprites: React.FC<{ icons: Icon[]; radius?: number; defaultSize?: number }> = ({
-    icons,
-    radius = 4.2,
-    defaultSize = 0.55, // smaller icons
+// -----------------------------------
+// INDIVIDUAL LOGO
+// Uses HTML img instead of WebGL texture
+// -----------------------------------
+
+const SkillIcon: React.FC<{
+  icon: Icon;
+  defaultSize: number;
+}> = ({ icon, defaultSize }) => {
+  const [failed, setFailed] = useState(false);
+
+  const size = icon.size ?? defaultSize;
+
+  const label =
+    icon.name ??
+    icon.src.split("/").slice(-2)[0] ??
+    "Skill";
+
+  return (
+    <div
+      style={{
+        width: size,
+        height: size,
+        padding: 0,
+        background: "transparent",
+        border: "none",
+        boxShadow: "none",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        pointerEvents: "none",
+        userSelect: "none",
+        boxSizing: "border-box",
+        }}
+    >
+      {failed ? (
+        <span
+          style={{
+            color: "#222",
+            fontSize: 9,
+            textAlign: "center",
+            overflowWrap: "anywhere",
+          }}
+        >
+          {label}
+        </span>
+      ) : (
+        <img
+          src={icon.src}
+          alt={label}
+          draggable={false}
+          loading="eager"
+          decoding="async"
+          onError={() => {
+            console.warn(
+              "Failed to load logo:",
+              icon.src
+            );
+            setFailed(true);
+          }}
+          style={{
+            display: "block",
+            width: "100%",
+            height: "100%",
+            objectFit: "contain",
+          }}
+        />
+      )}
+    </div>
+  );
+};
+
+// -----------------------------------
+// ICONS POSITIONED IN 3D
+// -----------------------------------
+
+const IconCloud: React.FC<{
+  icons: Icon[];
+  radius?: number;
+  defaultSize?: number;
+}> = ({
+  icons,
+  radius = 3.2,
+  defaultSize = 48,
 }) => {
-    const textures = useLoader(THREE.TextureLoader, icons.map((i) => i.src));
-    const points = useMemo(() => spherePoints(icons.length, radius), [icons.length, radius]);
+  const points = useMemo(
+    () => spherePoints(icons.length, radius),
+    [icons.length, radius]
+  );
 
-    return (
-        <group>
-            {points.map((p, i) => (
-                <sprite key={i} position={p} scale={[icons[i].size ?? defaultSize, icons[i].size ?? defaultSize, 1]}>
-                    <spriteMaterial map={textures[i]} transparent />
-                </sprite>
-            ))}
-        </group>
-    );
+  return (
+    <group>
+      {points.map((position, index) => (
+        <Html
+          key={`${icons[index].src}-${index}`}
+          position={[
+            position.x,
+            position.y,
+            position.z,
+          ]}
+          center
+          distanceFactor={8}
+          style={{
+            pointerEvents: "none",
+          }}
+        >
+          <SkillIcon
+            icon={icons[index]}
+            defaultSize={defaultSize}
+          />
+        </Html>
+      ))}
+    </group>
+  );
 };
 
-const Rotator: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-    const ref = useRef<THREE.Group>(null);
-    const rotationSpeed = useRef({ x: 0.005, y: 0.008 }); // Base rotation speeds
-    
-    useFrame(({ mouse, clock }) => {
-        if (!ref.current) return;
-        
-        // Constant rotation with time-based animation
-        const time = clock.getElapsedTime();
-        
-        // Primary constant rotation
-        ref.current.rotation.y += rotationSpeed.current.y;
-        ref.current.rotation.x += rotationSpeed.current.x;
-        
-        // Optional: Add subtle mouse influence without stopping rotation
-        const mouseInfluenceX = mouse.y * 0.1;
-        const mouseInfluenceY = mouse.x * 0.1;
-        
-        // Blend mouse influence with constant rotation
-        ref.current.rotation.x += mouseInfluenceX * 0.01;
-        ref.current.rotation.y += mouseInfluenceY * 0.01;
-        
-        // Optional: Add slight variation to make it more organic
-        const variation = Math.sin(time * 0.5) * 0.002;
-        ref.current.rotation.x += variation;
-    });
-    
-    return <group ref={ref}>{children}</group>;
+// -----------------------------------
+// SMOOTH ROTATION
+// -----------------------------------
+
+const Rotator: React.FC<{
+  children: React.ReactNode;
+}> = ({ children }) => {
+  const ref = useRef<THREE.Group>(null);
+
+  useFrame(({ pointer }, delta) => {
+    if (!ref.current) return;
+
+    // Continuous rotation
+    ref.current.rotation.y += delta * 0.35;
+
+    // Smooth vertical mouse movement
+    ref.current.rotation.x =
+      THREE.MathUtils.lerp(
+        ref.current.rotation.x,
+        pointer.y * 0.15,
+        Math.min(1, delta * 4)
+      );
+  });
+
+  return <group ref={ref}>{children}</group>;
 };
 
-const SkillCloud: React.FC<{ icons: Icon[]; className?: string }> = ({ icons, className = "" }) => {
-    return (
-        <div className={`relative h-[460px] w-full rounded-2xl bg-[#151515] ${className}`}>
-            <Canvas dpr={[1, 2]} gl={{ antialias: true, alpha: true }}>
-                {/* Perspective for real depth */}
-                <PerspectiveCamera makeDefault fov={50} position={[0, 0, 10]} />
+// -----------------------------------
+// MAIN COMPONENT
+// -----------------------------------
 
-                {/* Lights - Adjust these for different shading */}
-                <ambientLight intensity={0.8} />  {/* Overall brightness */}
-                <directionalLight position={[5, 8, 12]} intensity={0.4} />  {/* Main light */}
-                <pointLight position={[-6, -4, -8]} intensity={0.2} />  {/* Fill light */}
+const SkillCloud: React.FC<SkillCloudProps> = ({
+  icons,
+  className = "",
+}) => {
+  return (
+    <div
+      className={`
+        relative
+        h-[460px]
+        w-full
+        rounded-2xl
+        overflow-hidden
+        bg-[#151515]
+        ${className}
+      `}
+      role="img"
+      aria-label="Rotating 3D cloud of technology logos"
+    >
+      <Canvas
+        dpr={[1, 1.5]}
+        gl={{
+          antialias: true,
+          alpha: true,
+        }}
+      >
+        <PerspectiveCamera
+          makeDefault
+          fov={50}
+          position={[0, 0, 10]}
+        />
 
-                <Rotator>
-                    {/* Icons on the globe */}
-                    <IconSprites icons={icons} radius={3.2} defaultSize={0.5} />
-                </Rotator>
+        <Rotator>
+          <IconCloud
+            icons={icons}
+            radius={3.2}
+            defaultSize={48}
+          />
+        </Rotator>
 
-                {/* Disable OrbitControls or make them less intrusive */}
-                <OrbitControls 
-                    enableZoom={false} 
-                    enablePan={false} 
-                    rotateSpeed={0.3}
-                    enableDamping={true}
-                    dampingFactor={0.1}
-                />
-            </Canvas>
-
-            {/* Soft inner vignette */}
-           {/* <div className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2
-                w-[560px] h-[560px] rounded-full
-                bg-[radial-gradient(ellipse_at_center,rgba(255,255,255,0.08)_0%,rgba(255,255,255,0.03)_45%,rgba(0,0,0,0)_70%)]
-                shadow-[0_60px_140px_-60px_rgba(0,0,0,0.6)]" /> */}
-        </div>
-    );
+        <OrbitControls
+          enableZoom={false}
+          enablePan={false}
+          rotateSpeed={0.15}
+        />
+      </Canvas>
+    </div>
+  );
 };
 
 export default SkillCloud;
