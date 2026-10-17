@@ -61,7 +61,7 @@ export const translations = {
   'experience.internship': 'Stage de fin d’études',
   'experience.role': 'Stagiaire en développement logiciel',
   'experience.specialty': 'Automatisation des tests d’interfaces graphiques',
-  'experience.date': 'Février – août 2026',
+  'experience.date': 'Février – Août 2026',
   'experience.location': 'Nantes, France',
   'experience.showDetails': 'Voir les détails',
   'experience.hideDetails': 'Masquer les détails',
