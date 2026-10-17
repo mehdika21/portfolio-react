@@ -47,6 +47,7 @@ const Skills: React.FC = () => {
             <div className="skill-pill">JavaScript</div>
             <div className="skill-pill">PHP</div>
             <div className="skill-pill">Bash</div>
+            <div className="skill-pill">Rust</div>
           </div>
         </div>
       </div>

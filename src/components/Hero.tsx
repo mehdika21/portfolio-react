@@ -1,9 +1,13 @@
 
 import React, { useEffect, useState } from "react";
 import SkillCloud from "./SkillCloud";
+import { translations, type Lang, type TKey } from "../i18n/translations";
 
-// All icons are loaded from CDN.
-// No need to download or store them locally.
+type HeroProps = {
+  language: Lang;
+};
+
+// Technology icons
 const BASE =
   "https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons";
 
@@ -38,28 +42,37 @@ const ICONS = iconPaths.map((path) => ({
   src: `${BASE}/${path}.svg`,
 }));
 
-const phrases = [
-  "Building clean, reliable web apps",
-  "Solving complex problems",
-];
-
 const TYPING_MS = 40;
 const DELETING_MS = 24;
 const PAUSE_END_MS = 1200;
 const PAUSE_START_MS = 400;
 
-const Hero: React.FC = () => {
+const Hero: React.FC<HeroProps> = ({ language }) => {
   const [phraseIndex, setPhraseIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
 
+  const t = (key: TKey) => translations[language][key];
+
+  const phrases = [
+    t("hero.phrase.1"),
+    t("hero.phrase.2"),
+  ];
+
+  // Restart the animation when language changes
+  useEffect(() => {
+    setPhraseIndex(0);
+    setCharIndex(0);
+    setIsDeleting(false);
+  }, [language]);
+
+  // Typewriter animation
   useEffect(() => {
     const current = phrases[phraseIndex];
 
     let timeout: number;
 
     if (!isDeleting && charIndex < current.length) {
-      // Typing forward
       timeout = window.setTimeout(() => {
         setCharIndex((prev) => prev + 1);
       }, TYPING_MS);
@@ -68,19 +81,16 @@ const Hero: React.FC = () => {
       !isDeleting &&
       charIndex === current.length
     ) {
-      // Pause before deleting
       timeout = window.setTimeout(() => {
         setIsDeleting(true);
       }, PAUSE_END_MS);
 
     } else if (isDeleting && charIndex > 0) {
-      // Delete characters
       timeout = window.setTimeout(() => {
         setCharIndex((prev) => prev - 1);
       }, DELETING_MS);
 
     } else {
-      // Move to next phrase
       timeout = window.setTimeout(() => {
         setIsDeleting(false);
         setPhraseIndex(
@@ -89,8 +99,8 @@ const Hero: React.FC = () => {
       }, PAUSE_START_MS);
     }
 
-    return () => clearTimeout(timeout);
-  }, [charIndex, isDeleting, phraseIndex]);
+    return () => window.clearTimeout(timeout);
+  }, [charIndex, isDeleting, phraseIndex, language]);
 
   return (
     <section className="relative">
@@ -101,60 +111,52 @@ const Hero: React.FC = () => {
           <div className="space-y-6">
 
             <p className="uppercase tracking-[.2em] text-xs text-slate-400">
-              Setting Sail for the Grand Line
+              {t("hero.tagline")}
             </p>
 
             <h1 className="text-4xl sm:text-6xl font-semibold leading-tight">
-              Hi, I'm
+              {t("hero.hello")}{" "}
+              {t("hero.greeting")}{" "}
+
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold to-teal">
-                {" "}Mehdi Kaidi
+                Mehdi Kaidi
               </span>
             </h1>
 
             {/* Typewriter Subtitle */}
             <h2 className="text-lg sm:text-xl text-slate-300 font-medium">
-              I'm passionate about{" "}
+              {t("hero.imPassionate")}
 
               <span className="text-teal">
                 {phrases[phraseIndex].slice(0, charIndex)}
 
                 <span
                   className="
-                    border-r-2
-                    border-teal
-                    ml-0.5
-                    inline-block
-                    h-[1em]
-                    align-[-0.1em]
-                    animate-pulse
+                    border-r-2 border-teal ml-0.5
+                    inline-block h-[1em]
+                    align-[-0.1em] animate-pulse
                   "
                 />
               </span>
             </h2>
 
+            {/* Description */}
             <p className="text-base sm:text-lg text-slate-400 max-w-2xl">
-              I'm enthusiastic about discovering new digital
-              technologies and expanding my knowledge of
-              innovative, creative design principles.
-              My curiosity drives me to continuously learn
-              about modern technologies and their potential
-              to create meaningful experiences.
+              {t("hero.blurb")}
             </p>
 
             {/* Buttons */}
             <div className="flex gap-4 pt-4">
-
               <a
                 href="#projects"
                 className="
                   px-6 py-2.5 rounded-lg
                   bg-teal text-slate-950
                   font-medium
-                  hover:opacity-90
-                  transition-opacity
+                  hover:opacity-90 transition-opacity
                 "
               >
-                View Projects
+                {t("hero.cta.projects")}
               </a>
 
               <a
@@ -162,13 +164,11 @@ const Hero: React.FC = () => {
                 className="
                   px-6 py-2.5 rounded-lg
                   border border-white/10
-                  hover:border-teal
-                  transition-colors
+                  hover:border-teal transition-colors
                 "
               >
-                Get in touch
+                {t("hero.cta.contact")}
               </a>
-
             </div>
           </div>
 
