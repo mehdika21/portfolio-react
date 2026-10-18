@@ -14,9 +14,8 @@ const Experience: React.FC<ExperienceProps> = ({ language }) => {
 
   const technologies = [
     "Python",
-    "PyQt5",
-    "PyQt6",
-    "PySide6",
+    "Pytest",
+    "Pytest-qt",
     t("experience.guiTesting"),
     t("experience.testAutomation"),
   ];
