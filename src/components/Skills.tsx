@@ -63,7 +63,7 @@ const Skills: React.FC = () => {
         {t("skills.title")}
       </h2>
 
-      <div className="grid gap-6 md:grid-cols-2 mt-8">
+      <div className="grid gap-6 md:grid-cols-4 mt-8">
         {groups.map((group) => (
           <div
             key={group.titleKey}
