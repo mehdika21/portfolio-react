@@ -25,6 +25,7 @@ const groups = [
     items: [
       "Node.js", "Express", ".NET",
       "Spring Boot", "MySQL", "SQL",
+      "MongoDB",
     ],
   },
   {
@@ -32,7 +33,7 @@ const groups = [
     fallbackTitle: "Tools & Testing",
     items: [
       "Git", "Docker", "GitLab",
-      "Jira", "Qt", "pytest",
+      "Jira", "pytest",
     ],
   },
 ] as const;
